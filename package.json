@@ -4,20 +4,27 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "dev": "SET PUBLIC_ENV=development & astro dev",
+    "build:production": "SET PUBLIC_ENV=production & astro build",
+    "build:preview": "SET PUBLIC_ENV=preview & astro build",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prettier": "npx prettier . --write"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/vercel": "^7.8.0",
     "@storyblok/astro": "^5.0.0",
     "astro": "^4.12.3",
+    "astro-robots-txt": "^1.0.0",
     "tailwindcss": "^3.4.7"
   },
   "devDependencies": {
     "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
     "vite": "^5.4.0"
   }
 }

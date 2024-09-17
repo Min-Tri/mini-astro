@@ -9,7 +9,8 @@ export default {
         'accent-dark': 'rgb(49, 10, 101)',
       },
       backgroundImage: {
-        'accent-gradient': 'linear-gradient(45deg, var(--accent), var(--accent-light) 30%, white 60%)',
+        'accent-gradient':
+          'linear-gradient(45deg, var(--accent), var(--accent-light) 30%, white 60%)',
       },
     },
   },

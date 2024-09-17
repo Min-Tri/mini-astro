@@ -1,0 +1,25 @@
+---
+import Card from '@/components/Card.astro';
+import Layout from '@/layouts/Layout.astro';
+import { storyblokApi } from '@/utils';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+let story: any;
+try {
+  const { data } = await storyblokApi('cdn/stories/product');
+  story = data.story;
+} catch (error) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title="Welcome to Astro.">
+  <main
+    class="m-auto p-4 w-[800px] max-w-[calc(100%-2rem)] text-white text-[20px] leading-[1.6]"
+  >
+    <h1 class="text-4xl font-bold leading-none text-center mb-4">
+      product page
+    </h1>
+    <StoryblokComponent blok={story.content} />
+  </main>
+</Layout>
