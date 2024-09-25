@@ -5,6 +5,7 @@ import basicSsl from '@vitejs/plugin-basic-ssl';
 import { defineConfig } from 'astro/config';
 import { loadEnv } from 'vite';
 import robotsTxt from 'astro-robots-txt';
+import clerk from '@clerk/astro';
 const { STORYBLOK_TOKEN } = loadEnv(
   process.env.STORYBLOK_TOKEN,
   process.cwd(),
@@ -16,6 +17,7 @@ export default defineConfig({
   output: process.env.PUBLIC_ENV === 'preview' ? 'server' : 'static',
   adapter: process.env.PUBLIC_ENV === 'preview' ? vercel() : undefined,
   integrations: [
+    clerk(),
     tailwind(),
     storyblok({
       accessToken: STORYBLOK_TOKEN,
