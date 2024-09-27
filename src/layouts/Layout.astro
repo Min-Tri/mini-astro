@@ -1,9 +1,14 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+import { getCartCookie } from '@/pages/api/cart';
+import { SignedIn, SignedOut, UserButton } from '@clerk/astro/components';
+
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+const cart = getCartCookie(Astro.cookies);
 ---
 
 <!doctype html>
@@ -19,8 +24,20 @@ const { title } = Astro.props;
     <link rel="stylesheet" href="/src/styles/global.css" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body>
+    <header>
+      <h1>{title}</h1>
+      <nav>
+        <SignedOut>
+          <a href="/sign-in">Sign In</a>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </nav>
+    </header>
     <slot />
   </body>
 </html>

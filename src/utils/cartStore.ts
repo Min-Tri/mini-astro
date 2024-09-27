@@ -1,6 +1,7 @@
-import { atom } from 'nanostores';
+import type { CartItem } from '@/types/cart';
+import { atom, map } from 'nanostores';
 
-export const $cart = atom<any[]>([]);
+export const $cart = atom<CartItem[]>([]);
 
 export const $cartAnimation = atom<{
   isAnimating: boolean;
@@ -10,7 +11,7 @@ export const $cartAnimation = atom<{
   timerId: undefined,
 });
 
-export function setCart(cart: any[]) {
+export function setCart(cart: CartItem[]) {
   $cart.set(cart);
 
   const cartAnimationState = $cartAnimation.get();
